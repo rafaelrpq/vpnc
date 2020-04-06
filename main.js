@@ -35,6 +35,12 @@ app.connect ('activate', () => {
         label: _label
     });
 
+    btn.set_size_request(120, 30);
+
+    let ctx = new Gtk.StyleContext ();
+    ctx = btn.get_style_context();
+    var className = (vpnc()) ? "destructive-action" : "suggested-action";
+    ctx.add_class (className);
 
     let _text = (vpnc()) ? "A VPN está ativa\n\nVocê está conectado a UNIPAMPA" : "A VPN não está conectada\n\nVocê não possui acesso a rede da UNIPAMPA";
 
@@ -49,6 +55,8 @@ app.connect ('activate', () => {
             if (status == 0) {
                 btn.label = 'Conectar';
                 text.set_text ("A VPN não está conectada\n\nVocê não possui acesso a rede da UNIPAMPA");
+                ctx.remove_class ("destructive-action");
+                ctx.add_class ("suggested-action");
                 return ;
             } else {
                print (error);
@@ -58,6 +66,7 @@ app.connect ('activate', () => {
             if (status == 0) {
                 btn.label = 'Desconectar';
                 text.set_text ("A VPN está ativa\n\nVocê está conectado a UNIPAMPA");
+                ctx.add_class ("destructive-action")
                 return ;
             } else {
                 print (error);
@@ -71,4 +80,4 @@ app.connect ('activate', () => {
     win.show_all();
 });
 
-app.run([])
+app.run([]);
