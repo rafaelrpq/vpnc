@@ -66,7 +66,8 @@ app.connect ('activate', () => {
             if (status == 0) {
                 btn.label = 'Desconectar';
                 text.set_text ("A VPN está ativa\n\nVocê está conectado a UNIPAMPA");
-                ctx.add_class ("destructive-action")
+                ctx.remove_class ("suggested-action");
+                ctx.add_class ("destructive-action");
                 return ;
             } else {
                 print (error);
