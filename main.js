@@ -26,8 +26,6 @@ app.connect ('activate', () => {
         resizable     : false
     });
 
-    var fix = new Gtk.Fixed();
-
     win.set_titlebar (header);
 
     var _label = (vpnc()) ? 'Desconectar' : 'Conectar';
@@ -46,19 +44,6 @@ app.connect ('activate', () => {
     text.set_text (_text);
     // … which closes the window when clicked
     btn.connect ('clicked', () => {
-        //if (status != 0) {
-        //     btn.label = "Desconectar";
-        //     [success, output, error, status] = GLib.spawn_command_line_sync ( "pkexec vpnc myconf.conf");
-        //     print (status);
-        //     return ;
-        // }
-        // if (status == 0) {
-        //     btn.label = "Conectar";
-        //     status = -1;
-        //     print (status);
-        //     GLib.spawn_command_line_sync ( "pkexec vpnc-disconnect");
-        //     return ;
-        // }
         if (vpnc()) {
             let [success, output, error, status] = GLib.spawn_command_line_sync ( "pkexec vpnc-disconnect");
             if (status == 0) {
@@ -66,7 +51,7 @@ app.connect ('activate', () => {
                 text.set_text ("A VPN não está conectada\n\nVocê não possui acesso a rede da UNIPAMPA");
                 return ;
             } else {
-               print (error)
+               print (error);
             }
         } else {
             let [success, output, error, status] = GLib.spawn_command_line_sync ( "pkexec vpnc myconf.conf");
@@ -75,17 +60,12 @@ app.connect ('activate', () => {
                 text.set_text ("A VPN está ativa\n\nVocê está conectado a UNIPAMPA");
                 return ;
             } else {
-                print (error)
+                print (error);
             }
         }
     });
 
-    // print(vpnc());
     win.add (text);
-
-    // fix.put (btn, 40,40);
-
-    //header.add(btn);
     header.pack_end(btn);
 
     win.show_all();
