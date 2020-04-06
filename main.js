@@ -1,6 +1,7 @@
 imports.gi.versions['Gtk'] = '3.0';
 const Gtk = imports.gi.Gtk;
 const GLib = imports.gi.GLib;
+const Pango = imports.gi.Pango;
 
 // Create a new application
 let app = new Gtk.Application ({ application_id: 'com.github.rafaelrpq.vpnc' });
