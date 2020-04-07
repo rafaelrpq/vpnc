@@ -76,7 +76,21 @@ app.connect ('activate', () => {
         }
     });
 
-    win.add (text);
+    let settings = Gtk.Settings.get_default();
+
+    settings.gtk_application_prefer_dark_theme  = false;
+
+    let img = new Gtk.Image()
+    img.set_from_icon_name ('dialog-warning',Gtk.IconSize.DIALOG);
+    // img.set_from_icon_name ('channel-secure-symbolic',Gtk.IconSize.DIALOG);
+
+    let grid = new Gtk.Grid ();
+    grid.set_column_homogeneous (true);
+    grid.set_row_homogeneous (true);
+    grid.attach (img, 1, 1, 4, 1)
+    grid.attach (text, 2, 1, 10, 1)
+
+    win.add (grid);
     header.pack_end(btn);
 
     win.show_all();
