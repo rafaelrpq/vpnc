@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Name[pt_BR]=VPN Unipampa
+Categories=Network;
+X-GNOME-FullName[pt_BR]=VPN Unipampa
+Comment[pt_BR]=
+Icon=/home/rafael/Aplicativos/gjs/vpnc/vpn.svg
+NoDisplay=false
+Exec=gjs /home/rafael/Aplicativos/gjs/vpnc/main.js
+Path=
+Terminal=false
+X-GNOME-UsesNotifications=false
